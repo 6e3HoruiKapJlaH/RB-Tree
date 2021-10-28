@@ -265,3 +265,50 @@ class RedBlackTree():
     # delete the node from the tree
     def delete_node(self, data):
         self.__delete_node_helper(self.root, data)
+        
+        
+        
+def creating_rbt(n):
+    from random import randint
+
+    rbt = RedBlackTree()
+    for i in range(n):
+
+        rbt.insert(randint(0, 10000))
+    return rbt
+
+def benchmark(): 
+    from random import randint
+    import time
+    from timeit import default_timer as timer
+
+    rbt = RedBlackTree()
+    
+    
+    for i in range(15):
+        n=(10**(i+3))
+	
+        rbt = creating_rbt(n)
+
+        #searching_number = randint(0, 10000)
+        start = timer()
+        #rbt.search_tree(searching_number)
+        rbt.insert("value1")
+        end = timer()
+        print("Insertion time: {} sec".format(end-start) + " of {} nums.".format(n))
+
+        
+        start = timer()
+        rbt.delete_node("key4")   
+        end = timer()
+        print("Removing time: {} sec".format(end-start) + " of {} nums.".format(n))
+
+        start = timer()
+        rbt.search_tree("key3")
+        end = timer()
+        print("Searcing time: {} sec".format(end-start) + " of {} nums.".format(n))
+
+        print("***********")
+    
+if __name__=="__main__":
+    benchmark()
